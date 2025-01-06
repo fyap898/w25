@@ -23,5 +23,6 @@ jobs:
           git config --global user.name 'Charlotte Curtis'
           git config --global user.email 'ccurtis@mtroyal.ca'
           git add lectures
+          git add README.md
           git commit -m "Rendering lectures"
           git push
