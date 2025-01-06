@@ -33,7 +33,7 @@ Charlotte Curtis
 ---
 
 # How did I get involved with ML?
-![center w:900px](charlotte-timeline.svg)
+![center w:900px](../figures/charlotte-timeline.svg)
 
 ---
 
