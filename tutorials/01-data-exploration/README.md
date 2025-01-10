@@ -2,7 +2,7 @@
 Before building a machine learning model, it is important to understand and wrangle your data into an appropriate numeric format. In this tutorial, we'll look at how I like to set up my projects, some tips for exploratory visualizations, and (time allowing) how the marketing data from the AI course was wrangled.
 
 ## Part 1: Project configuration
-Tutorials are not marked in this course, so it's up to you to keep track of them separately. I recommend copying the this directory to a new location rather than forking the entire `w25` repo and working out of that, otherwise you'll have a bunch of merge conflicts and extra stuff if you want to submit a PR to the main repo.
+Tutorials are not marked in this course, so it's up to you to keep track of them separately. I recommend copying the this directory to a new location rather than forking the entire `w25` repo and working out of that, otherwise you'll have a bunch of merge conflicts and extra stuff if you want to submit a PR to the main repo. Alternatively, you can create a fork and work within a separate branch.
 
 Tools:
 - [Jupyter Notebooks](https://jupyter.org/)
