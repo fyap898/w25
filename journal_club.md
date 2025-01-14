@@ -4,14 +4,16 @@ Your 15% journal club mark consists of two components:
 - Reading a single paper more thoroughly and being the "expert" on that paper (10%) 
 
 ## Written submission
-The week you have signed up to be the expert, do the following before **Wednesday's class**. Journal club discussions will take place Wednesday or Friday so that we've covered the topic a bit before discussing the paper.
+The week you have signed up to be the expert, read the paper and answer the following questions before **Wednesday's class**. Journal club discussions will take place Wednesday or Friday so that we've covered the topic a bit before discussing the paper.
 
 The following questions should be used to guide the discussion during class. Since there are multiple experts each week, submitting a written response allows me to see your thoughts in case someone else has the same ideas and gets a chance to speak first.
+
+You may use whatever file format you wish, and feel free to copy and paste relevant diagrams or quotes from the paper.
 
 ## Guiding questions
 These questions should be answered concisely, but I am looking for more than a simple yes/no.
 
-For example, for the question "Are the methods described in the paper still relevant today?" you might answer "yes, this paper outlined the Adam optimizer that is still the most popular choice for gradient descent in Tensorflow and Pytorch").
+For example, for the question "Are the methods described in the paper still relevant today?" you might answer "yes, this paper outlined the Adam optimizer that is still the most popular choice for gradient descent in Tensorflow and Pytorch".
 
 ### Paper Summary
 - What are the main contributions of this work?
