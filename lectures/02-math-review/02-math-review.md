@@ -21,6 +21,7 @@ Charlotte Curtis
 ## But first, some stuff about assessments
 - [Assignment 1](../../assignments/assignment1.md)
 - [Journal club guidelines](../../journal_club.md)
+- [Example](https://arxiv.org/abs/1503.03585) of a math-heavy paper
 - Additional references for papers:
     - [Google Scholar](https://scholar.google.com/)
     - [ArXiv](https://arxiv.org/)
