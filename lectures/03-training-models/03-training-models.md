@@ -238,15 +238,17 @@ Logistic regression is a binary classifier that uses the **logistic function** (
 
 $$\sigma(t) = \frac{1}{1 + e^{-t}}$$
 
-resulting in the loss function (trust me on this one):
+We can then minimize the **log loss** or **cross-entropy** loss function:
 
 $$J(\mathbf{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y_i \log(\hat{p}_i) + (1 - y_i) \log(1 - \hat{p}_i) \right]$$
 
 where $\hat{p}_i = \sigma(\mathbf{\theta}^T \mathbf{x}_i)$ is the probability that instance $i$ is positive.
 
+<footer>More on cross-entropy loss when we talk about classification models</footer>
+
 ---
 
-The gradient of the loss function for logistic regression is:
+The gradient of the log loss ends up being:
 
 $$\nabla_{\mathbf{\theta}} J(\mathbf{\theta}) = \frac{1}{m} \sum_{i=1}^m \left( \sigma(\mathbf{\theta}^T \mathbf{x}_i) - y_i \right) \mathbf{x}_i$$
 
