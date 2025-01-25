@@ -19,10 +19,10 @@ Charlotte Curtis
 ---
 
 ## Overview
-* A brief review of the history of neural networks
-* Neurons, perceptrons, and multilayer perceptrons
-* Backpropagation
-* References and suggested reading:
+- A brief review of the history of neural networks
+- Neurons, perceptrons, and multilayer perceptrons
+- Backpropagation
+- References and suggested reading:
     - [Scikit-learn book](https://librarysearch.mtroyal.ca/discovery/fulldisplay?context=L&vid=01MTROYAL_INST:02MTROYAL_INST&search_scope=MRULibrary&isFrbr=true&tab=MRULibraryResources&docid=alma9923265933604656): Chapter 10, introduction to artificial neural networks
     - [Deep Learning Book](https://www.deeplearningbook.org/): Chapter 6, deep feedforward networks
 
@@ -119,7 +119,11 @@ Image source: Scikit-learn book
     A xor B = (A and !B) or (!A and B)
     ```
 * A perceptron can solve `and` and `or` and `not`... so what if the input to the `or` perceptron is the output of two `and` perceptrons?
-* :abacus: Verify the solution to XOR
+
+---
+
+## A solution to XOR
+![h:500 center](04-xor-solution.png)
 
 ---
 
@@ -150,8 +154,9 @@ Image source: Scikit-learn book
 
 * With a linear activation function:
     $$\mathbf{\hat{y}} = \mathbf{X} \mathbf{W}^{(1)} \mathbf{W}^{(2)}$$
-* For a single sample $\mathbf{x}$:
+* In summation notation for a single sample:
     $$\hat{y} = \sum_{j = 1}^{2} w_j^{(2)} \sum_{i = 1}^{2} x_i w_{ij}^{(1)}$$
+* In this case, $\hat{y} = 2.162$
 
 </div>
 <div>
@@ -169,8 +174,6 @@ $$\mathbf{W}^{(1)} = \begin{bmatrix}-0.78 & 0.13 \\ 0.85 & 0.23\end{bmatrix}, \m
 </div>
 </div>
 </div>
-
-:abacus: Solve for $\hat{y}$ using the values given
 
 ---
 
@@ -190,10 +193,10 @@ $$\mathbf{W}^{(1)} = \begin{bmatrix}-0.78 & 0.13 \\ 0.85 & 0.23\end{bmatrix}, \m
     $$\frac{\partial \mathcal{L}}{\partial w_{j}^{(2)}} = \frac{\partial{\mathcal{L}}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w_{j}^{(2)}} = (\hat{y} - y) \frac{\partial \hat{y}}{\partial w_{j}^{(2)}} = (\hat{y} - y) \sum_{i} x_i w_{ij}^{(1)}$$
 
 * For the first layer (connecting inputs to hidden):
-    $$\frac{\partial{\mathcal{L}}}{\partial w_{ij}^{(1)}} = \left(\frac{\partial{\mathcal{L}}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w_j^{(2)}}\right) \frac{\partial{w_j^{(2)}}}{\partial w_{ij}^{(1)}} = \left(\frac{\partial{\mathcal{L}}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w_j^{(2)}}\right)x_i$$
+    $$\frac{\partial{\mathcal{L}}}{\partial w_{ij}^{(1)}} = \left(\frac{\partial{\mathcal{L}}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w_j^{(2)}}\right) \frac{\partial{h_j}}{\partial w_{ij}^{(1)}} = \left(\frac{\partial{\mathcal{L}}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w_j^{(2)}}\right)x_i$$
+    
+    where $h_j = x_iw_{ij}^{(1)}$ is the output of the hidden layer
 ---
-
-<!-- Made it this far in first class -->
 
 ## Bias terms
 * The toy example did not include bias terms, but these are very important (as seen in the perceptron examples)
