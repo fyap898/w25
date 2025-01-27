@@ -136,14 +136,14 @@ Image source: Scikit-learn book
 ---
 
 ## Training MLPs with backpropagation
-1. Initialize the weights, usually randomly
-2. Perform a **forward pass** to compute the output of each neuron
-3. Compute the **loss** of the output layer (e.g. MSE)
-4. Calculate the **gradient of the loss** with respect to each weight
-5. Update the weights using gradient descent (minibatch, stochastic, etc)
-6. Repeat steps 2-5 until stopping criteria met
+1) Initialize the weights, through some random-ish strategy
+2) Perform a **forward pass** to compute the output of each neuron
+3) Compute the **loss** of the output layer (e.g. MSE)
+4) Calculate the **gradient of the loss** with respect to each weight
+5) Update the weights using gradient descent (minibatch, stochastic, etc)
+6) Repeat steps 2-5 until stopping criteria met
 
-> Step 4 is the "backpropagation" part
+    > Step 4 is the "backpropagation" part
 
 ---
 
