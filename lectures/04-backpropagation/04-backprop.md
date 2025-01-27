@@ -123,7 +123,7 @@ Image source: Scikit-learn book
 ---
 
 ## A solution to XOR
-![h:500 center](04-xor-solution.png)
+![h:500 center](../figures/04-xor-solution.png)
 
 ---
 
