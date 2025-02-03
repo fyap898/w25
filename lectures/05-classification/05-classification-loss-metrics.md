@@ -3,6 +3,7 @@ marp: true
 paginate: true
 theme: marp-theme
 math: true
+title: Classification loss functions and metrics
 ---
 
 <!-- 
