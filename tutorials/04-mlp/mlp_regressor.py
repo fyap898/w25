@@ -69,7 +69,7 @@ class MLPRegressor:
         """
         std_glorot = np.sqrt(2 / (self.dims[-1] + n_neurons))
         self.weights.append(np.random.randn(self.dims[-1], n_neurons) * std_glorot)
-        self.biases.append(np.random.randn(n_neurons) * std_glorot)
+        self.biases.append(np.zeros(n_neurons))
         self.activations.append(activation)
 
         # self.n_inputs has 1 more element than the other lists
@@ -192,7 +192,7 @@ if __name__ == "__main__":
     mlp = MLPRegressor(xor_in.shape[1])
     mlp.add_layer(2, "tanh")
     mlp.add_layer(1, "sigmoid")
-    loss = mlp.train(xor_in, y, 0.2, 4000, 4)
+    loss = mlp.train(xor_in, y, 0.2, 2000, 4)
 
     print(mlp.forward(xor_in) > 0.5)
     # take a look at the training curve
