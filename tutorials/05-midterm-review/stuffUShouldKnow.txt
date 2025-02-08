@@ -1,0 +1,380 @@
+Below is a comprehensive set of short-answer explanations to the questions you provided. They are organized by topic and are meant as a conceptual study guide rather than exhaustive proofs or derivations.
+
+---
+
+## 1. Questions for Data Exploration and Cleaning
+
+### Big Picture
+
+**1. Why is domain knowledge important?**  
+- Domain knowledge helps you understand the real-world context and constraints of the data. It guides you in selecting appropriate features, interpreting results correctly, and avoiding unrealistic assumptions. It can also inform decisions about data cleaning, feature engineering, and model selection.
+
+**2. What kinds of machine learning tasks are there?**  
+- **Supervised Learning:** Learning from labeled data (e.g., classification, regression).  
+- **Unsupervised Learning:** Finding structure in unlabeled data (e.g., clustering, dimensionality reduction).  
+- **Semi-supervised Learning:** Combination of labeled and unlabeled data.  
+- **Reinforcement Learning:** Learning what actions to take in an environment to maximize a reward.
+
+**3. What are the general steps in a machine learning project?**  
+1. **Define the problem and goals** (domain understanding).  
+2. **Gather and explore data** (EDA, data cleaning).  
+3. **Split data** into training/validation/test sets.  
+4. **Feature engineering** (handling missing data, encoding categorical variables, feature scaling, etc.).  
+5. **Model selection and training** (choose an algorithm, tune hyperparameters).  
+6. **Model evaluation** (use metrics, cross-validation, check for over/underfitting).  
+7. **Iterate** (improve features, try new models).  
+8. **Deploy and monitor** (ensure performance in production).
+
+---
+
+### Data Exploration
+
+**4. Why do we need to reserve a test set?**  
+- A test set provides an unbiased estimate of the model’s performance on unseen data. If you use the same data you trained on (or even tuned hyperparameters on) to measure performance, you risk overestimating how well the model generalizes.
+
+**5. What is data peeking (or snooping) bias?**  
+- It occurs when information from the test set “leaks” into the training process (e.g., you choose features or tune hyperparameters based on knowledge of the test set). This leads to overly optimistic performance estimates.
+
+**6. What problems might arise from randomly shuffling the data to select the test set?**  
+- If the data has a temporal or systematic structure (e.g., time series, grouped data by subject), a random shuffle can break these structures. You might end up with data leakage between train and test or incorrectly estimate performance. Stratified or time-based splits are often more appropriate.
+
+**7. What is stratified sampling and when is it useful?**  
+- **Stratified sampling** divides the population into subgroups (strata) and samples from each subgroup in proportion to its prevalence.  
+- It’s useful when you have **imbalanced classes** or a feature whose distribution you want to preserve in both training and test sets (e.g., maintaining the same proportion of classes in classification problems).
+
+---
+
+### Data Cleaning
+
+**8. What are the 3 methods of dealing with missing features presented in the book?**  
+1. **Drop missing values** (rows or columns).  
+2. **Impute missing values** (e.g., fill with mean, median, mode, or more sophisticated imputation).  
+3. **Use models that can handle missing values** (some tree-based methods like certain implementations of XGBoost or LightGBM can handle missing data).
+
+**9. What are the pros/cons of each method?**  
+- **Dropping missing values:**  
+  - *Pros:* Simple, straightforward, no distortion of data values.  
+  - *Cons:* Loses potentially valuable data, can bias the dataset if data are missing systematically.  
+
+- **Imputation (simple: mean/median/mode):**  
+  - *Pros:* Preserves data size, straightforward.  
+  - *Cons:* Can distort variance/correlation; not always statistically robust.  
+
+- **Model-based imputation or algorithms that handle missing:**  
+  - *Pros:* Potentially more accurate; uses relationships among features.  
+  - *Cons:* More complex, may be computationally expensive.
+
+**10. What methods could we use to convert categorical or text data to numeric information?**  
+- **Ordinal Encoding (integer encoding)**  
+- **One-Hot Encoding**  
+- **Label Encoding**  
+- **Embedding representations** (often for high-cardinality data, typically in deep learning contexts)  
+- **Bag-of-Words or TF-IDF** (common for text)  
+- **Feature hashing** (hashing trick for large vocabularies)
+
+**11. What are the assumptions about ordinal encoding? When does it make sense to use this approach?**  
+- Ordinal encoding assumes that categories have a **natural order** (e.g., “low < medium < high”).  
+- It makes sense when the categorical feature truly represents levels of a concept that can be sorted (such as ratings, or small/medium/large sizes).
+
+**12. What are the limitations of one-hot encoding?**  
+- **High dimensionality** if the categorical feature has many levels.  
+- Correlation issues: one-hot columns are perfectly multi-collinear (any one column can be inferred from the others).  
+- Potential memory/storage concerns for large cardinalities.
+
+**13. Why do we need to make sure the data are on approximately the same scale?**  
+- Many algorithms (e.g., gradient descent-based, k-NN, SVMs) are sensitive to the magnitude of features. Larger-scale features may dominate smaller-scale features, skewing the model.
+
+**14. What are common methods for rescaling data?**  
+- **Min-Max Scaling (Normalization):** Scales data to [0,1] range.  
+- **Standardization (Z-score):** Transforms data to have mean 0 and standard deviation 1.
+
+**15. Which method is more affected by outliers?**  
+- **Min-Max Scaling** is more affected by outliers because extreme values compress the majority of data into a narrower range.
+
+**16. How would you decide which one to use?**  
+- Depends on the algorithm and the data distribution.  
+- **Standardization** is often safer when outliers are present or when many ML algorithms (like linear or logistic regression, neural networks) are used.  
+- **Min-Max** might be useful for bounded activation functions (like certain neural networks) or specific domain constraints.
+
+---
+
+## Regression Modelling
+
+**17. What kind of performance measures make sense for regression tasks?**  
+- **Mean Squared Error (MSE)**  
+- **Root Mean Squared Error (RMSE)**  
+- **Mean Absolute Error (MAE)**  
+- **R² (Coefficient of Determination)**  
+- **Mean Absolute Percentage Error (MAPE)**  
+- Choice often depends on whether large errors are more penalized (MSE) or smaller errors more uniformly (MAE).
+
+**18. What is underfitting and overfitting?**  
+- **Underfitting**: The model is too simple, can’t capture the underlying trend (high bias).  
+- **Overfitting**: The model is too complex, fits noise in the training data (high variance), fails to generalize to new data.
+
+**19. What are some ways to reduce overfitting?**  
+- **Regularization** (e.g., L1, L2 penalties).  
+- **Reduce model complexity** (fewer features, simpler models).  
+- **Get more training data** (if possible).  
+- **Data augmentation** (in certain domains, e.g., images).  
+- **Early stopping** (in iterative training methods).
+
+**20. What is cross-validation?**  
+- A technique to **split data multiple ways** (e.g., k-fold), systematically train on one subset while validating on the other, then rotating. This provides more robust estimates of model performance.
+
+**21. When would you choose cross-validation instead of a test/train/validate split?**  
+- When you have **limited data** and want to maximize training/validation usage.  
+- When you need a **more reliable** performance estimate.
+
+**22. What does it mean if the cross-validation error is higher than the training error?**  
+- The model might be **overfitting** to the training data. A gap is expected, but if it’s large, there’s a generalization issue.
+
+**23. What are hyperparameters vs parameters?**  
+- **Parameters** are learned by the model during training (e.g., weights in linear regression).  
+- **Hyperparameters** are set *before* training (e.g., regularization strength, learning rate, number of hidden layers).
+
+---
+
+## 2. Questions for Math Review
+
+### Linear Algebra
+
+**1. What are scalars, vectors, and matrices?**  
+- **Scalar**: A single numerical value.  
+- **Vector**: An ordered list of scalars (1D array).  
+- **Matrix**: A 2D array of scalars.
+
+**2. What is the norm of a vector?**  
+- A measure of the vector’s magnitude or length. Commonly the Euclidean norm (\(\ell_2\) norm).
+
+**3. What is the dot product of two vectors?**  
+- A scalar computed as the sum of element-wise products of the two vectors. Geometrically, it’s related to the projection of one vector onto another.
+
+**4. How do you multiply two matrices?**  
+- If \(A\) is an \((m \times n)\) matrix and \(B\) is an \((n \times p)\) matrix, the product \(C = AB\) is \((m \times p)\) where each element \(C_{ij} = \sum_{k=1}^{n} A_{ik} \times B_{kj}\).
+
+---
+
+### Calculus
+
+**5. What is a (partial) derivative?**  
+- The rate of change of a function with respect to one (or more) of its variables.  
+- **Partial derivative** is when a function has multiple variables, and you take the derivative with respect to one variable while holding others constant.
+
+**6. Why are derivatives important in machine learning?**  
+- Optimization methods (like gradient descent) use derivatives to figure out how to update parameters to minimize the loss function.
+
+**7. What is the chain rule?**  
+- A method for computing the derivative of a composite function. If \( f(g(x)) \) then \( \frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x) \).
+
+**8. What is the gradient?**  
+- A vector of partial derivatives with respect to all parameters. It points in the direction of the steepest increase of a function.
+
+---
+
+### Probability and Statistics
+
+**9. What is the difference between a discrete and continuous random variable?**  
+- **Discrete**: Takes on countable values (e.g., 0, 1, 2, …).  
+- **Continuous**: Takes on any value in a continuous range (e.g., real numbers within an interval).
+
+**10. What are the probability mass and density functions?**  
+- **Probability Mass Function (PMF)**: Describes the probability distribution of a **discrete** random variable.  
+- **Probability Density Function (PDF)**: Describes the probability distribution of a **continuous** random variable.
+
+**11. What is the expected value?**  
+- The average or mean value of a random variable over many trials, often denoted \(E[X]\).
+
+**12. What are covariance and correlation?**  
+- **Covariance**: Measures how two variables vary together (can be any real number).  
+- **Correlation**: A normalized measure of linear relationship (between -1 and 1).
+
+**13. What are the limitations of correlation coefficients?**  
+- They measure **linear** relationships only.  
+- They do not imply causation.  
+- They can be sensitive to **outliers**.  
+- They do not capture more complex, non-linear relationships.
+
+**14. Why is the normal distribution so common?**  
+- By the **Central Limit Theorem**, the sum (or average) of many independent random variables tends toward a normal distribution, regardless of their original distributions.
+
+---
+
+## 3. Questions for Training Models
+
+### Linear Regression
+
+**1. What does it mean to have a closed-form solution?**  
+- A **closed-form solution** is an explicit formula that gives the exact result for the parameters in one step (e.g., the **Normal Equation** in linear regression).
+
+**2. Why is the normal equation not always the best way to solve linear regression?**  
+- It can be **computationally expensive** (\(O(n^3)\) with \(n\) = number of features).  
+- It can also be numerically unstable if \(n\) is large or if features are highly correlated.
+
+**3. How can linear regression be used to fit polynomials?**  
+- By **adding polynomial features** (e.g., \(x, x^2, x^3\)) to the design matrix, linear regression can capture polynomial relationships in the data.
+
+**4. What is the design matrix (X)?**  
+- The matrix whose rows are **data samples** and whose columns are **features**. In polynomial regression, extra columns represent higher-order terms.
+
+---
+
+### Gradient Descent
+
+**5. What is the difference between the normal equation and gradient descent?**  
+- **Normal equation** solves for parameters in one analytical step (closed-form).  
+- **Gradient descent** iteratively updates parameters in the direction of the negative gradient of the loss function.
+
+**6. What are stochastic, batch, and minibatch gradient descent?**  
+- **Batch Gradient Descent:** Uses the entire training set to compute the gradient at each step.  
+- **Stochastic Gradient Descent (SGD):** Uses a single (or a small random subset of) training example(s) at each step.  
+- **Minibatch Gradient Descent:** Uses a **small batch** (e.g., 32, 64 samples) at each step (a compromise between batch and stochastic).
+
+**7. Why would you choose one over the other?**  
+- **Batch GD**: Converges in a more stable way but can be slow with large datasets.  
+- **SGD**: Much faster per iteration, can escape local minima, but has more noise.  
+- **Minibatch GD**: Often the best practical approach for large-scale problems (balances speed and stability).
+
+**8. Why is data normalization important for gradient descent?**  
+- Ensures **faster and more stable convergence**. Features on wildly different scales can cause gradients to oscillate and slow down or complicate convergence.
+
+**9. What is the learning rate or step size?**  
+- The hyperparameter that **controls how big a step** you take in the parameter space on each iteration of gradient descent.
+
+**10. How would you choose when to stop training?**  
+- When the **validation loss** stops decreasing (and begins to increase = overfitting).  
+- Or when changes in the loss become **negligibly small**.  
+- Or after a **fixed number of epochs** if improvements are no longer seen.
+
+**11. What is the role of the validation set?**  
+- To monitor and tune hyperparameters, detect overfitting, and make decisions about when to stop training or which model configuration to use.
+
+**12. What criteria does a loss function need to meet to be suitable for gradient descent?**  
+- **Differentiability** (or almost everywhere differentiable).  
+- Sufficiently **smooth** so that the gradient is well-defined.  
+- Ideally, **convexity** makes optimization simpler (though many ML problems are non-convex).
+
+---
+
+## 4. Questions for Perceptron / Backpropagation
+
+### Perceptrons
+
+**1. What is a perceptron?**  
+- A **binary linear classifier** that computes a weighted sum of inputs and applies a step function to decide the class label (often -1 or +1).
+
+**2. Under what conditions is a perceptron guaranteed to converge?**  
+- If the training data is **linearly separable**, the Perceptron Learning Algorithm will find a separating hyperplane in a finite number of steps.
+
+**3. Why was the perceptron unable to solve the XOR problem?**  
+- XOR is **not linearly separable**—a single line (hyperplane) cannot separate the XOR classes.
+
+**4. What is the nonlinear activation function used in a perceptron?**  
+- Traditionally, the perceptron uses a **step (Heaviside) function** (i.e., outputs 1 if weighted sum > 0, otherwise 0).
+
+**5. Why does a multilayer perceptron (MLP) solve the XOR problem?**  
+- An MLP with **at least one hidden layer and a nonlinear activation** can learn **nonlinear decision boundaries**, thus can represent XOR.
+
+**6. What was the key insight that allowed training of MLP-like networks?**  
+- The development of the **backpropagation** algorithm, which efficiently computes gradients for multilayer networks by applying the chain rule.
+
+---
+
+### Backpropagation
+
+**7. What is being calculated in backpropagation?**  
+- The **gradient of the loss function** with respect to each parameter in the network (weights and biases).
+
+**8. What are the forward and backward passes?**  
+- **Forward pass**: Compute outputs (and the loss) from inputs by propagating forward through the network.  
+- **Backward pass**: Compute gradients by propagating errors backward from the output layer to earlier layers.
+
+**9. How are backpropagation and gradient descent related?**  
+- **Backpropagation** calculates the gradients needed for **gradient descent** (or variants like SGD) to update the network parameters.
+
+**10. What are some computational efficiencies commonly used to speed up backpropagation?**  
+- **Vectorization** (using matrix operations, GPU acceleration).  
+- **Minibatch training**.  
+- **Caching intermediate results** of forward pass to avoid recomputing them.
+
+**11. Why are bias terms necessary in a neural network?**  
+- Biases let the activation functions be **shifted** away from the origin, enabling networks to learn more flexible decision boundaries.
+
+**12. Why are nonlinear activation functions necessary in a neural network?**  
+- Without nonlinearity, multiple layers collapse into a single linear transformation—no added representational power.
+
+**13. What is the difference between hidden and output activation functions?**  
+- **Hidden activations** (e.g., ReLU, sigmoid, tanh) are chosen to help the network learn nonlinear relationships.  
+- **Output activations** are typically chosen to match the task (e.g., softmax for classification, linear for regression).
+
+**14. Why is ReLU (and its variations) more popular than the sigmoid function for hidden layers?**  
+- ReLU avoids the **vanishing gradient** problem better, is computationally simpler, and often leads to faster convergence. Sigmoid saturates for large positive/negative inputs, which can slow or stall training.
+
+**15. What drives the choice of loss and output activation functions?**  
+- The nature of the task:  
+  - **Regression** → often a linear output with MSE (or MAE).  
+  - **Binary Classification** → often a sigmoid output with binary cross-entropy.  
+  - **Multiclass Classification** → often a softmax output with categorical cross-entropy.
+
+**16. What are the parameters in a basic neural network?**  
+- **Weights and biases** in each layer. Weights are often stored in matrices, and biases in vectors (one bias per unit).
+
+---
+
+## 5. Questions for Classification and More NN Details
+
+### Cross-Entropy Loss
+
+**1. Why is mean squared error (and its various flavors) not a good loss function for classification problems?**  
+- MSE doesn’t match the **log-likelihood** nature of classification; it can lead to slower convergence and isn’t aligned with probability outputs (i.e., MSE doesn’t strongly penalize wrong confident predictions in the same way as cross-entropy).
+
+**2. What is the expected value operator?**  
+- Denoted \(E[\cdot]\). It gives the **average (long-run) value** of a random variable over many repetitions.
+
+**3. What is a Bernoulli distribution?**  
+- A distribution for a **binary** random variable that can be 0 or 1, with probability \(p\) for 1.
+
+**4. What is the information of an event?**  
+- In information theory, the **information** (self-information) of an event with probability \(p\) is \(-\log_2(p)\). It measures how “surprising” the event is.
+
+**5. What is entropy?**  
+- The **expected value of the information** of a random variable. A measure of **uncertainty** or disorder in a distribution.
+
+**6. What is cross-entropy measuring?**  
+- It measures the **distance** between two probability distributions (the “true” distribution vs the “predicted” distribution). In ML classification, it quantifies how far our predicted probabilities are from the actual labels.
+
+**7. How is cross-entropy related to the KL divergence?**  
+- \( \text{Cross-entropy}(p, q) = \text{Entropy}(p) + \text{KL}(p \| q) \).  
+- The KL divergence term measures the extra cost (in bits) of using \(q\) instead of \(p\).
+
+**8. What output activation functions are used to predict probabilities?**  
+- **Sigmoid (logistic)** for binary classification (output in [0,1]).  
+- **Softmax** for multiclass classification (outputs sum to 1 across classes).
+
+---
+
+### More NN Details
+
+**9. Why is weight initialization important?**  
+- Proper initialization helps **start training in a stable region**, avoid vanishing or exploding gradients, and improves convergence speed and stability.
+
+**10. What key number should be considered in weight initialization?**  
+- The **number of inputs/outputs (fan-in, fan-out)** for a given layer. Methods like Xavier/Glorot or He initialization use these to scale the initial weights.
+
+**11. How is the activation function related to weight initialization?**  
+- Different activations work best with different initialization scalings:  
+  - **Xavier/Glorot** for sigmoid/tanh.  
+  - **He initialization** for ReLU (and variants).
+
+**12. What is the vanishing/exploding gradient problem?**  
+- **Vanishing gradients**: Gradients become extremely small, slowing or stopping learning.  
+- **Exploding gradients**: Gradients grow uncontrollably large, causing unstable updates.
+
+**13. How can batch normalization help stabilize training?**  
+- It normalizes layer inputs (or outputs) by subtracting the batch mean and dividing by the batch standard deviation, plus learnable shift/scale parameters. This helps stabilize the distribution of intermediate activations, reducing internal covariate shift and mitigating vanishing/exploding gradients.
+
+---
+
+**End of Study Guide**  
+
+Use these concise explanations as a reference for key concepts in data exploration, regression, model training, neural networks, and fundamental math/probability. Always remember that deeper understanding often comes from applying these ideas to real problems and deriving or coding some of these steps yourself.

@@ -1,0 +1,20 @@
+1a) How would you encode the City column as a numerical value? Justify your answer
+    - I would encode it with using Imputer to fill up missing values since there is some null value
+    out of 20000 data. Then only I use OneHot Encoder since City is an object, it could be reperesented
+    categorically.
+    - Impute missing values, one hot encode them to avoid establishing any relationship. Since city is unordered 
+    category which one hot encode can help the model to differentiate them distinctively rather than numerically.
+
+1b) The Temperature column has some null values. Suggest a reasonable approach to deal with them.
+    - Use a placeholder like computing the mean value to fill up missing or null values. Then use standard scaler
+    to standardize the column.
+    - Imputte missing values with the mean value to remain consistency, then apply Standard Scaler
+
+1c) In preprocessing your data, you have chosen to normalize the numeric features. Why is it a problem to recompute
+    the normalization parameters during inference?
+    - Data that is fed as normalization parameters should not be normalized again as the model is trained based on the 
+    preprocessed data. Recomputing the normalized data will result in inconsistency as recompute of the parameters will 
+    change the scaling and distribution of the feature when the model is predicting based on the data seen during training. 
+    This also causes data leakage as recomputing parameters might introduce information form the new data to the model. 
+    The model hasnt been trained to handle.
+
