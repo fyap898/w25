@@ -3,6 +3,7 @@ marp: true
 paginate: true
 theme: marp-theme
 math: true
+title: Convolution and Convolutional Neural Networks
 ---
 
 <!-- 
@@ -10,7 +11,7 @@ _class: invert lead
 _paginate: skip
  -->
 
-# Intro to Convolution
+#Convolution and Convolutional Neural Networks
 
 COMP 4630 | Winter 2025
 Charlotte Curtis
