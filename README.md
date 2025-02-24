@@ -9,3 +9,4 @@
 | 04 | Perceptrons and backpropagation | [md](lectures/04-backpropagation/04-backprop.md) | <a href="lectures/pdfs/04-backprop.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
 | 05 | Classification loss functions and metrics | [md](lectures/05-classification/05-classification-loss-metrics.md) | <a href="lectures/pdfs/05-classification-loss-metrics.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
 | 06 | Intro to modern neural networks | [md](lectures/06-modern-nns/06-modern-nns.md) | <a href="lectures/pdfs/06-modern-nns.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
+| co |  | [md](lectures/07-convolution/convolution.md) | <a href="lectures/pdfs/convolution.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
