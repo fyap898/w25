@@ -125,6 +125,37 @@ Charlotte Curtis
 
 ---
 
+## The Adam optimizer
+* Keeps track of first ($\mathbf{s}$) and second ($\mathbf{r}$) moments of the gradient, with two exponential decay terms $\rho_1$ and $\rho_2$
+* At each time step, the update is now:
+  $$\begin{aligned}\mathbf{s} &= \rho_1 \mathbf{s} + (1 - \rho_1) \nabla_\mathbf{W} J(\mathbf{W})\\
+    \mathbf{r} &= \rho_2 \mathbf{r} + (1 - \rho_2) \nabla_\mathbf{W} J(\mathbf{W})^2\\
+    \mathbf{W} &= \mathbf{W} - \eta \frac{\mathbf{s}}{\sqrt{\mathbf{r}} + \epsilon}\end{aligned}$$
+* $\rho_1$ and $\rho_2$ are typically 0.9 and 0.999, respectively
+
+---
+
+## Regularization via dropout
+* **Dropout** is a regularization technique that randomly sets a fraction of the neurons to zero during training
+* During each training pass, a neuron has a $p$ probability of being dropped
+* Similar to training an ensemble of models then bagging
+* Helps to prevent overfitting, but can slow down training 
+* Typical values: 0.5 for hidden layers, 0.2 for input layers
+
+---
+
+## Choices for starting
+From the Deep Learning Book, section 11.2:
+* "Depending on the complexity of your problem, you may even want to begin without using deep learning."
+* Tabular data: fully connected, images: convolutional, sequences: recurrent*
+* ReLU or variants, with He initialization
+* SGD or Adam, add batch normalization if unstable
+* Use some kind of regularization, such as dropout
+
+<footer>*This book was written before transformer models</footer>
+
+---
+
 <!-- 
 _class: invert lead
 _paginate: skip
