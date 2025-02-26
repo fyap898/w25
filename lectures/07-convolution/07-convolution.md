@@ -3,7 +3,6 @@ marp: true
 paginate: true
 theme: marp-theme
 math: true
-title: Convolution and Convolutional Neural Networks
 ---
 
 <!-- 
@@ -11,7 +10,7 @@ _class: invert lead
 _paginate: skip
  -->
 
-#Convolution and Convolutional Neural Networks
+# Convolution and Convolutional Neural Networks
 
 COMP 4630 | Winter 2025
 Charlotte Curtis
@@ -182,6 +181,20 @@ $$\frac{1}{9}\begin{bmatrix}1 & 1 & 1\\1 & 1 & 1\\1 & 1 & 1\end{bmatrix}$$
 
 ---
 
+## Number of parameters example
+* Input: $100 \times 100 \times 3$
+* Kernel: $5 \times 5 \times 32$
+* Bias terms: 32
+* Total parameters: $5 \times 5 \times 3 \times 32 + 32 = 2430$
+
+<div data-marpit-fragment>
+
+> While convolution only happens in 2D, the kernel can be thought of as a 3D volume - there's a separate trainable kernel for each channel
+
+</div>
+
+---
+
 ## Pooling layers
 **Pooling layers** are used to reduce the dimensionality of the feature maps (aka **downsampling**) by taking the maximum or average of a region
 
@@ -211,9 +224,72 @@ $$\frac{1}{9}\begin{bmatrix}1 & 1 & 1\\1 & 1 & 1\\1 & 1 & 1\end{bmatrix}$$
 
 ---
 
+## LeNet (1998) vs AlexNet (2012)
+
+![h:500 center](../figures/07-alexnet.png)
+
+<footer>Source: <a href="https://en.wikipedia.org/wiki/AlexNet">Wikipedia</a></footer>
+
+---
+
+## Inception v1 aka GoogLeNet (2014)
+
+<div class="columns">
+
+![height:500 center](../figures/07-inception.png) 
+
+<div>
+
+![height:300](../figures/07-inception-module.png)
+
+- Struggled with vanishing gradients
+- v2 introduced batch normalization
+
+</div>
+</div>
+
+
+<footer>Source: <a href="https://en.wikipedia.org/wiki/Inception_(deep_learning_architecture)">Wikipedia</a></footer>
+
+---
+
+## VGG (2014)
+
+<div class="columns">
+
+![center h:400](https://media.geeksforgeeks.org/wp-content/uploads/20240607123924/VGG--19-Architecture-.webp)
+
+
+- Simple architecture, but "very" deep (16 or 19 layers)
+- Fixed the convolution hyperparameters and focused on depth
+
+</div>
+
+---
+
+## ResNet (2015)
+
+<div class="columns">
+
+![center](../figures/07-resnet.png)
+
+* Key innovation: easier to learn "identity" functions ($f(x) = x$)
+* If a layer outputs 0, it doesn't kill the gradient
+* Even deeper, e.g. ResNet-152
+
+---
+
+## References
+- [AlexNet paper](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html)
+- [Inception paper](https://arxiv.org/abs/1409.4842)
+- [VGG paper](https://arxiv.org/abs/1409.1556)
+- [ResNet paper](https://arxiv.org/abs/1512.03385)
+
+---
+
 <!-- 
 _class: invert lead
 _paginate: skip
  -->
 
- ## Next up: CV applications and RNNs
+ ## Next up: RNNs
