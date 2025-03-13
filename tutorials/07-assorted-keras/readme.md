@@ -1,6 +1,6 @@
 # Week 7 Tutorial: Exploring Keras
 
-I've provided a [notebook](07-assorted-keras.ipynb) that provides a few different ways of interacting with Keras.
+I've provided a [notebook](07-assorted-keras.ipynb) that provides a few different ways of interacting with Keras. Feel free to pick and choose which of these exercises to do based on what might be useful for your assignment.
 
 ## Exercise 1: A simple neural network
 Read through the notebook until you hit the Exercise 1 section. Follow the instructions to create a simple neural network, and look at the training curves. There should be some strange looking curves in there. What do you think is happening? 
@@ -35,3 +35,11 @@ Think about:
 - What are some hyperparameters we could tune?
 - Which ones are most important?
 - How do we decide on the range of values to try?
+
+## Exercise 5: Image augmentation
+CNNs are pretty good about being translation invariant, but they still have a hard time with image rotations, flips, rescaling, etc.
+
+For this exercise, run all the cells under the "Image Augmentation" section and observe the difference in validation accuracy at the last epoch compared to the accuracy when augmentation is applied. Next, try the following:
+- Go back to the model definition stage and insert the augmentation layers, then retrain
+- What happens to the accuracy of the augmented validation set now?
+- Can you think of other augmentations that would be useful in this context?
