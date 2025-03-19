@@ -2,7 +2,7 @@
 
 | Deliverable number | Component                         | Due date              | Weight |
 | ------------------ | --------------------------------- | --------------------- | ------ |
-| 1                  | [Proposal](1-proposal.md)         | March 26 at 11:59 PM  | 20%    |
+| 1                  | [Proposal](1-proposal.md)         | March 30 at 11:59 PM  | 20%    |
 | 2                  | [Checkpoint](2-checkpoint.md)     | April 6 at 11:59 PM   | 20%    |
 | 3                  | [Presentation](3-presentation.md) | April 7 during class  | 10%    |
 | 4                  | [Final Report](4-final-report.md) | April 27* at 11:59 PM | 50%    |
