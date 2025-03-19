@@ -22,7 +22,16 @@ The goal of this assignment is to showcase the skills you've learned in this cou
 
 > Tip: Often when you are writing a report and describing your methodology, you realize there is an error in that methodology and end up having to go back and fix something. Don't leave the writeup to the very end - it's a good idea to write as you go along.
 
-### Your code
+## Finding a Dataset
+Some good places to look for datasets:
+- [Kaggle](https://www.kaggle.com/datasets) - a website for machine learning competitions with a huge number of datasets. You can filter by file size, topic and more
+- [Papers with Code](https://paperswithcode.com/datasets) - pretty much what it says on the tin.
+- [UCI Machine Learning Repository](https://archive.ics.uci.edu/datasets) - a well-curated collection of datasets for learning purposes.
+- [Google Dataset Search](https://datasetsearch.research.google.com/) - of course Google does datasets as well.
+- [Wikipedia](https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research) - a giant list of datasets for machine learning research.
+- [Google BigQuery Datasets](https://console.cloud.google.com/marketplace/browse?filter=solution-type:dataset&hl=en) - accessible as in assignment 3
+
+## Your code
 This time, there is no starter code to share, as each of your projects will be different. Please submit your proposal, checkpoint and report as PDFs on D2L, and include a link to your code (e.g. on GitHub or Google Drive) in your final report abstract. This code may be public so you can use it as a portfolio piece.
 
 ## 4-Point Scale
