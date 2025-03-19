@@ -11,11 +11,6 @@
 
 You may work in teams of 2 or 3. 
 
-## Table of Contents <!-- omit in toc -->
-- [Overview](#overview)
-    - [Your code](#your-code)
-- [4-Point Scale](#4-point-scale)
-
 ## Overview
 The goal of this assignment is to showcase the skills you've learned in this course by applying them to a new dataset and task. You are free to choose anything you like - for example, [Kaggle competitions](https://www.kaggle.com/competitions) may provide some interesting ideas.
 
