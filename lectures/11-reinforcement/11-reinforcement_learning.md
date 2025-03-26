@@ -192,3 +192,17 @@ _paginate: skip
  -->
 
  # The last topic: Geneterative AI and ethics
+
+---
+
+![bg](../figures/trump1.jpg)
+![bg](../figures/trump2.jpg)
+
+<footer>Generated using MidJourney in Winter 2024</footer>
+
+---
+
+## GenAI + Ethics Discussion
+
+* Generative images have gotten [really good](https://factcheck.afp.com/doc.afp.com.36WP3BL)
+* What can we do? What *should* we do?
