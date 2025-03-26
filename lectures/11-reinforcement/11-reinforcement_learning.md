@@ -30,7 +30,7 @@ Charlotte Curtis
 ---
 
 ## Reinforcement Learning + LLMs
-  ![h:500 center](https://cdn-lfs.hf.co/repos/32/7d/327d13dcdeb581193de91d7ac0e90f2ffc601e8c9acb8889a5aa64b42e504845/4a636e24cbce526aae13012e6813065b483c6dfd6ad9280f74ed1995454f5537?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27trl_overview.png%3B+filename%3D%22trl_overview.png%22%3B&response-content-type=image%2Fpng&Expires=1742792965&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mjc5Mjk2NX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy5oZi5jby9yZXBvcy8zMi83ZC8zMjdkMTNkY2RlYjU4MTE5M2RlOTFkN2FjMGU5MGYyZmZjNjAxZThjOWFjYjg4ODlhNWFhNjRiNDJlNTA0ODQ1LzRhNjM2ZTI0Y2JjZTUyNmFhZTEzMDEyZTY4MTMwNjViNDgzYzZkZmQ2YWQ5MjgwZjc0ZWQxOTk1NDU0ZjU1Mzc%7EcmVzcG9uc2UtY29udGVudC1kaXNwb3NpdGlvbj0qJnJlc3BvbnNlLWNvbnRlbnQtdHlwZT0qIn1dfQ__&Signature=GvBuWky%7ExQlA8iLnoRPnKtifuBqp03pUACufJN3qE4lZpBVlRFthVJYj7hIIak3W0rMHjUF-25R7QvLAEwHFZC5luDUNyLaIuVxKLVMYRVQggMQJXblxL9C2Usi9wyF%7EZW7rix%7EY0Dq%7EMoQLSuUnG3QNou0hoMoctRDxKD2y%7E%7E3t73K7iKqO7TeyaU29XUp360G69AW5GiQAJojyYoXUcvw---z0AZ25txjJlekJVspwuYsSp6VVMfEspflEJAih2ulVuUArdRuXLUb5TmVe7JSo9BZLjqwwRb-SWgdBxP0Tsxc1MZAY80upJXqiK4iX9b9SwCZ4mpp7IOOXPadawg__&Key-Pair-Id=K3RPWS32NSSJCE)
+  ![h:500 center](../figures/11-rlhf.png)
 
 <footer>Source: <a href="https://huggingface.co/blog/trl-peft">Hugging Face</a></footer>
 
@@ -129,11 +129,32 @@ For small spaces, we can use **dynamic programming** to iteratively solve for $Q
 
 ---
 
+## Q-Learning Update rule
+* At each iteration, the Q estimate is updated according to:
+    $$Q(s, a) \leftarrow (1 - \alpha) \cdot Q(s, a) + \alpha \cdot [r + \gamma \cdot \max_{a'} Q(s', a')]$$
+
+* Where:
+    - $Q(s, a)$ is the estimated value of taking action $a$ in state $s$
+    - $\alpha$ is the learning rate (decreasing over time)
+    - $r$ is the immediate reward
+    - $\gamma$ is the discount factor
+    - $\max_{a'} Q(s', a')$ is the maximum Q-value for the next state
+
+---
+
+## Exploration policies
+
+* :question: How do you balance short-term rewards, long-term rewards, and exploration?
+* Our small example used a purely random policy
+* $\epsilon$-greedy chooses to explore randomly with probability $\epsilon$, and **greedily** with probability $1-\epsilon$
+* Common to start with high $epsilon$ and gradually reduce (e.g. 1 down to 0.05)
+
+---
+
 ## Challenges with Q-Learning
 
 * :question: We just converged on a 3-state problem in 10k iterations. How many states are in something like an Atari game?
 * :question: How do we handle **continuous** state spaces?
-* :question: How do you balance short-term rewards, long-term rewards, and exploration?
 
 <div data-marpit-fragment>
 
