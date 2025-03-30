@@ -14,3 +14,4 @@
 | 09 | Natural Language Processing | [md](lectures/09-nlp/09-nlp.md) | <a href="lectures/pdfs/09-nlp.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
 | 10 | Transformers and Large Language Models | [md](lectures/10-transformers/10-transformers.md) | <a href="lectures/pdfs/10-transformers.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
 | 11 | Reinforcement Learning | [md](lectures/11-reinforcement/11-reinforcement_learning.md) | <a href="lectures/pdfs/11-reinforcement_learning.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
+| 12 | Generative AI, ethics, and policies | [md](lectures/12-generative/12-random-extras.md) | <a href="lectures/pdfs/12-random-extras.pdf"><img src="lectures/figures/file-type-pdf.svg" alt="PDF" style="height: 20px; margin: 0;"/></a> |
