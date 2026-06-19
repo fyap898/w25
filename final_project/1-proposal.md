@@ -25,10 +25,20 @@ Scoping a project is very challenging, and generally we want to do more than can
 Include a link to your proposed dataset and cite at least one technical paper describing the approach you plan to use.
 
 ## Marking Scheme
-Using the usual 4 point scale, I will be assessing the following categories:
+Using the 4 point scale below, I will be assessing the following categories (equally weighted):
 - Description of task and dataset
 - Thoughtful risk assessment and contingency plan
 - Appropriate references and tentative approach
 - Overall coherence and clarity
 
 For a total of 16 points.
+
+<br />
+
+| Score | Description                                                            |
+| ----- | ---------------------------------------------------------------------- |
+| 4     | Excellent - thoughtful and creative without any errors or omissions    |
+| 3     | Pretty good, but with minor errors or omissions                        |
+| 2     | Mostly complete, but with major errors or omissions, lacking in detail |
+| 1     | A minimal effort was made, incomplete or incorrect                     |
+| 0     | No effort was made, or the submission is plagiarized                   |
